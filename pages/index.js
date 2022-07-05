@@ -85,29 +85,6 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
-          {/* 
-          <form onsubmit="printstuff()">
-            <label for="first">First name:</label>
-            <input type="text" id="first" name="first" />
-            <label for="last">Last name:</label>
-            <input type="text" id="last" name="last" />
-            <button type="submit">Submit</button>
-          </form> */}
-          {/* <form > */}
-          {/* <label htmlFor="roll">Roll Number</label>
-          <input
-            type="text"
-            id="roll"
-            name="roll"
-            required
-            minLength="2"
-            maxLength="3"
-          />
-          <label htmlFor="name">Name:</label>
-          <input type="text" id="name" name="name" />
-          <button onClick={printstuff} >Submit</button> */}
-          {/* </form> */}
-
         </div>
 
       </main>
