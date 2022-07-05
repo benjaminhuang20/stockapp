@@ -1,14 +1,54 @@
 import Head from 'next/head'
+import Link from 'next/link';
+import Script from 'next/script';
+import { Input } from 'antd';
+import React from "react";
+import { Hello } from './Hello';
+import { StockLookupComponent } from './StockLookupComponent';
+
+function TestAntD() {
+  const [inputvalue, setValue] = React.useState("");
+  return (
+    <div>
+      {inputvalue}
+      <Input placeholder='Basic Antd' onChange={(e) => setValue(e.target.value)}></Input>
+    </div>
+  )
+}
 
 export default function Home() {
+
+  function printstuff() {
+    console.log("hi");
+  }
+
+
   return (
+
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <TestAntD />
+
+      <StockLookupComponent />
 
       <main>
+        {/* <Welcome name="Benjamin" othername="Helen" />
+        <Welcome name="Wilson" />
+        <Welcome name="Allison" /> */}
+
+        <h2>
+          <Link href="/posts/first-post">
+            <u className="ben">to first post, </u>
+          </Link>
+
+          <Link href="/posts/second-post">
+            <u className='ben'>to second post</u>
+          </Link>
+        </h2>
+
         <h1 className="title">
           Welcome to <a href="https://nextjs.org">Next.js!</a>
         </h1>
@@ -45,7 +85,31 @@ export default function Home() {
               Instantly deploy your Next.js site to a public URL with Vercel.
             </p>
           </a>
+          {/* 
+          <form onsubmit="printstuff()">
+            <label for="first">First name:</label>
+            <input type="text" id="first" name="first" />
+            <label for="last">Last name:</label>
+            <input type="text" id="last" name="last" />
+            <button type="submit">Submit</button>
+          </form> */}
+          {/* <form > */}
+          {/* <label htmlFor="roll">Roll Number</label>
+          <input
+            type="text"
+            id="roll"
+            name="roll"
+            required
+            minLength="2"
+            maxLength="3"
+          />
+          <label htmlFor="name">Name:</label>
+          <input type="text" id="name" name="name" />
+          <button onClick={printstuff} >Submit</button> */}
+          {/* </form> */}
+
         </div>
+
       </main>
 
       <footer>
@@ -60,6 +124,12 @@ export default function Home() {
       </footer>
 
       <style jsx>{`
+      .ben {
+
+        font-size: 2rem;
+        font-weight: bold;
+
+      }
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
