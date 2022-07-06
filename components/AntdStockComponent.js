@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-
-export function StockLookupComponent() {
+import { Input, Space } from 'antd';
+import 'antd/dist/antd.css';
+const { Search } = Input;
+// const onSearch = (value) => console.log(value);
+export function AntdStockComponent() {
     const [value, setValue] = useState("");
     const [price, setPrice] = useState(0);
     function handleChange(event) {
@@ -8,19 +11,15 @@ export function StockLookupComponent() {
         setValue(event.target.value);
     }
     return (
-        <div>
-            <p>{price}</p>
-            <input type="text" name="" onChange={handleChange} value={value} />
-            <button onClick={async () => {
+        <Search placeholder="Search stocks" onSearch={
+            async () => {
                 const x = await fetch('api/stock?' +
                     new URLSearchParams({
                         symbol: value,
                     }));
-
                 const response = await x.json();
                 setPrice(response.price);
-            }}>Lookup Stock</button>
-        </div>
+            }}
+            enterButton onChange={handleChange} value={value} allowClear />
     );
 }
-;

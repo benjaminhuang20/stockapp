@@ -3,37 +3,25 @@ import Link from 'next/link';
 import Script from 'next/script';
 import { Input } from 'antd';
 import React from "react";
-import { Hello } from './Hello';
-import { StockLookupComponent } from './StockLookupComponent';
-
-function TestAntD() {
-  const [inputvalue, setValue] = React.useState("");
-  return (
-    <div>
-      {inputvalue}
-      <Input placeholder='Basic Antd' onChange={(e) => setValue(e.target.value)}></Input>
-    </div>
-  )
-}
+import { Hello } from '../components/Hello';
+import { StockLookupComponent } from '../components/StockLookupComponent';
+import { AntdStockComponent } from '../components/AntdStockComponent';
 
 export default function Home() {
-
   function printstuff() {
     console.log("hi");
   }
-
-
   return (
-
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <TestAntD />
+
 
       <StockLookupComponent />
 
+      <AntdStockComponent />
       <main>
         {/* <Welcome name="Benjamin" othername="Helen" />
         <Welcome name="Wilson" />
@@ -58,9 +46,9 @@ export default function Home() {
         </p>
 
         <div className="grid">
-          <a href="https://nextjs.org/docs" className="card">
-            <h3>Documentation &rarr;</h3>
-            <p>Find in-depth information about Next.js features and API.</p>
+          <a href="/posts/Checklist" className="card">
+            <h3>Checklist &rarr;</h3>
+            <p>to the Checklist page</p>
           </a>
 
           <a href="https://nextjs.org/learn" className="card">
