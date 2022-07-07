@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Input, Space } from 'antd';
-
 const { Search } = Input;
 export function StockLookupComponent() {
     const [value, setValue] = useState("");

@@ -11,10 +11,10 @@ export const Hello = () => {
         <button onClick={async () => {
             const hello = await fetch("api/hello");
             // const response = await hello.text();
-            // const json_response = JSON.parse(response);
-            // console.log(response); ()
+            //  const json_response = JSON.parse(response);
+            //  console.log(response); 
             // setResult(json_response);
-            const response = await hello.json();
+            // const response = await hello.json();
             setResult(response);
 
         }}> Fetch data</button>

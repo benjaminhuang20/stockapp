@@ -6,11 +6,19 @@ import React from "react";
 import { Hello } from '../components/Hello';
 import { StockLookupComponent } from '../components/StockLookupComponent';
 import { AntdStockComponent } from '../components/AntdStockComponent';
+import { SampleList } from '../components/SampleList';
+import { AddtoList } from '../components/AddtoList';
+import 'antd/dist/antd.css';
 
 export default function Home() {
   function printstuff() {
     console.log("hi");
   }
+
+  const [price, setPrice] = React.useState(0);
+  const [thing, setthing] = React.useState("");
+  const [mylist, setmylist] = React.useState([]);
+  console.log(mylist);
   return (
     <div className="container">
       <Head>
@@ -18,10 +26,25 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
+      <div> {price}</div>
 
       <StockLookupComponent />
+      <AntdStockComponent callback_benjamin={(price) => {
+        console.log("index.js price is " + price);
+        setPrice(price);
+      }} />
+      <AddtoList callback={(thing) => {
+        // setthing(thing);
+        const newlist = mylist.concat(thing);
+        console.log(newlist)
+        // setmylist([...mylist, thing]);
+        setmylist(newlist);
 
-      <AntdStockComponent />
+      }} />
+      <div>
+        <SampleList key="second_list" mylist={mylist} />
+      </div>
+
       <main>
         {/* <Welcome name="Benjamin" othername="Helen" />
         <Welcome name="Wilson" />
