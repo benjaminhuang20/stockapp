@@ -10,15 +10,18 @@ import { SampleList } from '../components/SampleList';
 import { AddtoList } from '../components/AddtoList';
 import 'antd/dist/antd.css';
 
+
+const handledelete = (todo, list) => {
+  const updatedArray = list.filter(todoItem => list.indexOf(todoItem) !== list.indexOf(todo));
+  console.log(updatedArray);
+  return (updatedArray);
+
+}
+
 export default function Home() {
-  function printstuff() {
-    console.log("hi");
-  }
 
   const [price, setPrice] = React.useState(0);
-  const [thing, setthing] = React.useState("");
-  const [mylist, setmylist] = React.useState([]);
-  console.log(mylist);
+  const [list2, setList2] = React.useState([]);
   return (
     <div className="container">
       <Head>
@@ -33,22 +36,22 @@ export default function Home() {
         console.log("index.js price is " + price);
         setPrice(price);
       }} />
-      <AddtoList callback={(thing) => {
-        // setthing(thing);
-        const newlist = mylist.concat(thing);
+      <AddtoList onAdd={(thing) => {
+        const newlist = list2.concat(thing);
         console.log(newlist)
-        // setmylist([...mylist, thing]);
-        setmylist(newlist);
+
+        setList2(newlist);
 
       }} />
       <div>
-        <SampleList key="second_list" mylist={mylist} />
+        <SampleList mylist={list2} callback={(x) => {
+          const newlist = [...x]; // making a copy of x so we have a new array with same contents
+          setList2(newlist);
+        }}
+        />
       </div>
 
       <main>
-        {/* <Welcome name="Benjamin" othername="Helen" />
-        <Welcome name="Wilson" />
-        <Welcome name="Allison" /> */}
 
         <h2>
           <Link href="/posts/first-post">
