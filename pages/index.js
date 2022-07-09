@@ -8,7 +8,8 @@ import { StockLookupComponent } from '../components/StockLookupComponent';
 import { AntdStockComponent } from '../components/AntdStockComponent';
 import { SampleList } from '../components/SampleList';
 import { AddtoList } from '../components/AddtoList';
-import 'antd/dist/antd.css';
+import {edit} from '../components/SampleList'
+
 
 
 const handledelete = (todo, list) => {

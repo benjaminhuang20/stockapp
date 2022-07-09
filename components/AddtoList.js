@@ -14,7 +14,6 @@ export const AddtoList = (props) => {
     return (<div>
         <div>Hello
         </div>
-       
          
         <Search placeholder="Add to list" onSearch={
             async () => {
