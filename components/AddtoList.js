@@ -6,7 +6,7 @@ const { Search } = Input;
 
 export const AddtoList = (props) => {
     const [value, setValue] = useState("");
- 
+
     function handleChange(event) {
         console.log(event.target.value);
         setValue(event.target.value);
@@ -14,15 +14,16 @@ export const AddtoList = (props) => {
     return (<div>
         <div>Hello
         </div>
-         
+
         <Search placeholder="Add to list" onSearch={
             async () => {
-                props.onAdd(value);
+                const newItem = new ToDoItem(value, false);
+                props.onAdd(newItem);
             }}
             enterButton onChange={handleChange} value={value} allowClear style={{ width: '150%', }}
         />
 
-      
-      
+
+
     </div>);
 };

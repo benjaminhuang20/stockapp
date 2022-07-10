@@ -8,10 +8,6 @@ import { StockLookupComponent } from '../components/StockLookupComponent';
 import { AntdStockComponent } from '../components/AntdStockComponent';
 import { SampleList } from '../components/SampleList';
 import { AddtoList } from '../components/AddtoList';
-import {edit} from '../components/SampleList'
-
-
-
 const handledelete = (todo, list) => {
   const updatedArray = list.filter(todoItem => list.indexOf(todoItem) !== list.indexOf(todo));
   console.log(updatedArray);
