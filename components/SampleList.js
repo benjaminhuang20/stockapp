@@ -40,7 +40,7 @@ function Row(props) {
 }
 
 export const SampleList = (props) => {
-
+    var list = props.mylist;
     return (
         <div>
             <div>My List</div>
