@@ -4,19 +4,55 @@ import Script from 'next/script';
 import { Input } from 'antd';
 import React from "react";
 import { ToDoList } from '../components/ToDoList';
-import {ToDoItem} from '../components/ToDoItem';
+import { ToDoItem } from '../components/ToDoItem';
+const { Search } = Input;
+import 'antd/dist/antd.css';
+function TemperatureComponent() {
+  const [value, setValue] = React.useState("");
+  function onChange() {
+    setValue(event.target.value);
+  }
+  const [temperature, setTemperature] = React.useState(0);
+  return (
+    <div>
+      <Search placeholder='Search Weather' onSearch={
+        async () => {
+          fetch(`api/Weather?` + new URLSearchParams({
+            location: value
+        }))
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              setTemperature(data.temp_f);
+            })
+          console.log("done");
+        }
+      }
+        enterButton onChange={onChange} value={value} allowClear style={{ width: '150%', }}></Search>
+
+      temperature={temperature}
+
+    </div>
+
+  );
+}
+
 export default function Home() {
+  const [weatherstats, setWeatherstats] = React.useState(null);
+
+
+
   return (
     <div className="container">
       <Head>
         <title>Create Next App</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <ToDoList />
+      <TemperatureComponent />
 
 
-      <ToDoList/>
       <main>
-
         <h2>
           <Link href="/posts/first-post">
             <u className="ben">to first post, </u>
@@ -78,7 +114,14 @@ export default function Home() {
         </a>
       </footer>
 
-      <style jsx>{`
+      <style jsx>{
+
+
+        `
+      ::selection{
+        color: white;
+        background: #46B4EB;
+    }
       .ben {
 
         font-size: 2rem;

@@ -39,7 +39,7 @@ function Row(props) {
 
 }
 
-export const SampleList = (props) => {
+export const Todo_List_View = (props) => {
     var list = props.mylist;
     return (
         <div>

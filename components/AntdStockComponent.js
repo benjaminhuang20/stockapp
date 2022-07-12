@@ -17,7 +17,6 @@ export function AntdStockComponent(props) {
 
         <Search placeholder="Search stocks" onSearch={
             async () => {
-
                 const x = await fetch('api/stock?' +
                     new URLSearchParams({
                         symbol: value,

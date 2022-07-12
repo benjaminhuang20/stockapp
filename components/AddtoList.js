@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { Input, Space } from 'antd';
 import 'antd/dist/antd.css';
-import { SampleList } from "./SampleList";
-import {ToDoItem} from '../components/ToDoItem';
+import { Todo_List_View } from "./Todo_List_View";
+
+import { ToDoItem } from "./ToDoItem";
 const { Search } = Input;
 
 export const AddtoList = (props) => {
     const [value, setValue] = useState("");
-
-    function handleChange(event) {
-        console.log(event.target.value);
+    function onChange(){
         setValue(event.target.value);
     }
     return (<div>
@@ -20,8 +19,9 @@ export const AddtoList = (props) => {
             async () => {
                 const newItem = new ToDoItem(value, false);
                 props.onAdd(newItem);
+                setValue("");
             }}
-            enterButton onChange={handleChange} value={value} allowClear style={{ width: '150%', }}
+            enterButton="Add" onChange={onChange} value={value} allowClear style={{ width: '150%', }}
         />
 
 

@@ -3,5 +3,4 @@ export class ToDoItem {
         this.text = text;
         this.complete = complete;
     }
-
 }
