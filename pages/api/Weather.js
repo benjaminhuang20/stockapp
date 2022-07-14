@@ -1,7 +1,13 @@
 //http://api.weatherapi.com/v1/current.json?key=31007ad2806d41cb8c5194325221107&q=San%20Francisco&aqi=yes
-import React from 'react';
-export default function Weather(req, res) {
 
+// import React, { useState, useEffect } from 'react';
+// useEffect(()=> {
+//     navigator.geolocation.getCurrentPosition(function(position) {
+//       console.log("Latitude is :", position.coords.latitude);
+//       console.log("Longitude is :", position.coords.longitude);
+//     });
+//   })
+export default function Weather(req, res) {
     const url = 'http://api.weatherapi.com/v1/current.json?' + new URLSearchParams({
         key: "31007ad2806d41cb8c5194325221107",
         q: req.query.location,

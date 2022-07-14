@@ -2,13 +2,41 @@ import Head from 'next/head'
 import Link from 'next/link';
 import Script from 'next/script';
 import { Input } from 'antd';
-import React from "react";
 import { ToDoList } from '../components/ToDoList';
-import { ToDoItem } from '../components/ToDoItem';
+import React, { Component } from "react";
 const { Search } = Input;
 import 'antd/dist/antd.css';
+
+
+
+function CurrentLocationTemperatureComponent() {
+
+  const [temperature, setTemperature] = React.useState(0);
+  return (
+    <div>
+      <button onClick={async () => {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          console.log("Latitude is :", position.coords.latitude);
+          console.log("Longitude is :", position.coords.longitude);
+          fetch(`api/Weather?` + new URLSearchParams({
+            location: position.coords.latitude + "," + position.coords.longitude
+          }))
+            .then((res) => res.json())
+            .then((data) => {
+              console.log(data);
+              setTemperature(data.temp_f);
+            })
+
+        });
+      }}>Print Coordinates</button>
+      The current locations temperature is: {temperature}
+    </div>
+  );
+}
+
 function TemperatureComponent() {
   const [value, setValue] = React.useState("");
+  const [data1, setData1] = React.useState([]);
   function onChange() {
     setValue(event.target.value);
   }
@@ -17,30 +45,29 @@ function TemperatureComponent() {
     <div>
       <Search placeholder='Search Weather' onSearch={
         async () => {
-          fetch(`api/Weather?` + new URLSearchParams({
-            location: value
-        }))
+          fetch(`api/Location?` + new URLSearchParams({
+            searchText: value
+          })
+          )
             .then((res) => res.json())
-            .then((data) => {
-              console.log(data);
-              setTemperature(data.temp_f);
-            })
-          console.log("done");
+            .then(data => {
+              fetch(`api/Weather?` + new URLSearchParams({
+                location: data.latitude + "," + data.longitude
+              }))
+                .then((res) => res.json())
+                .then((data1) => {
+                  setTemperature(data1.temp_f);
+                });
+            });
         }
       }
         enterButton onChange={onChange} value={value} allowClear style={{ width: '150%', }}></Search>
-
       temperature={temperature}
-
     </div>
-
   );
 }
 
 export default function Home() {
-  const [weatherstats, setWeatherstats] = React.useState(null);
-
-
 
   return (
     <div className="container">
@@ -49,6 +76,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ToDoList />
+      <CurrentLocationTemperatureComponent />
       <TemperatureComponent />
 
 
